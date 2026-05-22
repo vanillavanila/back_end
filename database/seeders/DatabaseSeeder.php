@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         User::updateOrCreate(
             [
-                'email' => 'superadmin@gmail.com',
+                'email' => 'adminsmk@gmail.com',
             ],
             [
                 'name' => 'Super Admin',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('123'),
                 'role' => 'super_admin',
             ]
         );
