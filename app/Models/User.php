@@ -2,29 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-#[Fillable([
-    'name',
-    'email',
-    'username',
-    'password',
-    'role',
-    'jurusan_id'
-])]
-
-#[Hidden([
-    'password',
-    'remember_token'
-])]
-
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
+
+    protected $table = 'users'; // ganti kalau tabelmu admin_contacts
+
+    protected $fillable = [
+        'name',
+        'email',
+        'username',
+        'password',
+        'role',
+        'jurusan_id',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     protected function casts(): array
     {
@@ -37,5 +39,10 @@ class User extends Authenticatable
     public function jurusan()
     {
         return $this->belongsTo(Jurusan::class);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
     }
 }
