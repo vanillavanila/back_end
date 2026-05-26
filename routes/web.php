@@ -27,7 +27,7 @@ Route::get('/test-login', function () {
     return 'LOGIN GAGAL';
 });
 
-Route::post('/debug-login', function () {
+Route::get('/debug-login', function () {
 
     $credentials = [
         'email' => 'adminsmk@gmail.com',
