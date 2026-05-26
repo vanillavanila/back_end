@@ -27,25 +27,25 @@ Route::get('/test-login', function () {
     return 'LOGIN GAGAL';
 });
 
-// Route::get('/debug-login', function () {
+Route::get('/debug-login', function () {
 
-//     $credentials = [
-//         'email' => 'adminsmk@gmail.com',
-//         'password' => 'password',
-//     ];
+    $credentials = [
+        'email' => 'adminsmk@gmail.com',
+        'password' => 'password',
+    ];
 
-//     if (Auth::attempt($credentials)) {
+    if (Auth::attempt($credentials)) {
 
-//         request()->session()->regenerate();
+        request()->session()->regenerate();
 
-//         return response()->json([
-//             'status' => 'SUCCESS',
-//             'user' => Auth::user(),
-//             'session_id' => session()->getId(),
-//         ]);
-//     }
+        return response()->json([
+            'status' => 'SUCCESS',
+            'user' => Auth::user(),
+            'session_id' => session()->getId(),
+        ]);
+    }
 
-//     return response()->json([
-//         'status' => 'FAILED',
-//     ]);
-// });
+    return response()->json([
+        'status' => 'FAILED',
+    ]);
+});
